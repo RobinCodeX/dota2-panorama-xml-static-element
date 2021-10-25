@@ -1,0 +1,44 @@
+<root>
+    <styles>
+        <include src="file://{resources}/styles/test.css" />
+    </styles>
+    <scripts>
+        <include src="file://{resources}/scripts/test.js" />
+    </scripts>
+    <snippets>
+    </snippets>
+    <Panel class="test_root">
+        <!-- Element of CustomElementA -->
+        <Template name="CustomElementA">
+            <Panel id="CustomElementA" class="Demo">
+                <Panel id="Header" bind="Header" />
+                <Panel id="Body" bind="BestBody" />
+                <Panel id="Footer" bind="Footer" />
+            </Panel>
+        </Template>
+        <!-- CustomButton -->
+        <Template name="CustomButton">
+            <Panel id="CustomButton" onactivate="@click">
+                <Image src="file://{images}/custom_game/icons/@icon.png" />
+                <Label text="@text" />
+            </Panel>
+        </Template>
+
+        <CustomElementA>
+            <Header>
+                <Label text="Header of CustomElementA" />
+                <Button id="CloseButton" />
+            </Header>
+            <BestBody>
+                <Label text="Body of CustomElementA" />
+                <CustomButton icon="cancel" text="#DOTA_Cancel" click="OnCancel()" />
+            </BestBody>
+            <Footer>
+                <Label text="Footer of CustomElementA" />
+            </Footer>
+        </CustomElementA>
+
+        <CustomButton icon="plus" text="Button Text" click="OnClick()" />
+
+    </Panel>
+</root>

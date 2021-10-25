@@ -1,0 +1,50 @@
+{
+    "name": "dota2-panorama-xml-static-element",
+    "version": "0.0.1",
+    "description": "",
+    "main": "dist/node.js",
+    "engines": {
+        "node": ">=14.0.0"
+    },
+    "engineStrict": true,
+    "scripts": {
+        "watch": "rollup -c -w",
+        "build": "rollup -c && tsc --emitDeclarationOnly",
+        "test": "jest --verbose",
+        "test:badges": "jest --verbose && jest-coverage-badges",
+        "test:kv": "jest --coverage=false -- __tests__/KeyValues.test.ts",
+        "lint:prettier": "prettier --check .",
+        "write-prettier": "prettier --write ."
+    },
+    "author": "RobinCode",
+    "homepage": "https://github.com/RobinCodeX/dota2-panorama-xml",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/RobinCodeX/dota2-panorama-xml.git"
+    },
+    "keywords": [
+        "dota2"
+    ],
+    "license": "MIT",
+    "dependencies": {
+        "xml-formatter": "^2.5.1",
+        "xmldom": "^0.6.0"
+    },
+    "devDependencies": {
+        "@rollup/plugin-commonjs": "19.0.0",
+        "@rollup/plugin-node-resolve": "13.0.0",
+        "@rollup/plugin-typescript": "8.2.1",
+        "@types/jest": "^27.0.1",
+        "@types/node": "^16.7.10",
+        "@types/xmldom": "^0.1.31",
+        "iconv-lite": "^0.6.3",
+        "jest": "^27.1.0",
+        "jest-coverage-badges": "^1.1.2",
+        "prettier": "^2.3.2",
+        "rollup": "2.52.3",
+        "ts-jest": "^27.0.5",
+        "ts-node": "^10.2.1",
+        "tslib": "^2.3.1",
+        "typescript": "4.3.4"
+    }
+}
