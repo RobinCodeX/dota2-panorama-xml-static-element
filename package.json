@@ -12,15 +12,14 @@
         "build": "rollup -c && tsc --emitDeclarationOnly",
         "test": "jest --verbose",
         "test:badges": "jest --verbose && jest-coverage-badges",
-        "test:kv": "jest --coverage=false -- __tests__/KeyValues.test.ts",
         "lint:prettier": "prettier --check .",
         "write-prettier": "prettier --write ."
     },
     "author": "RobinCode",
-    "homepage": "https://github.com/RobinCodeX/dota2-panorama-xml",
+    "homepage": "https://github.com/RobinCodeX/dota2-panorama-xml-static-element",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/RobinCodeX/dota2-panorama-xml.git"
+        "url": "git+https://github.com/RobinCodeX/dota2-panorama-xml-static-element.git"
     },
     "keywords": [
         "dota2"
