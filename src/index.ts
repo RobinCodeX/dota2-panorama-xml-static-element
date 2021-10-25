@@ -1,14 +1,14 @@
 import { DOMParser, XMLSerializer } from 'xmldom';
-import { promises } from 'fs';
 import formatter from 'xml-formatter';
+import { readFile } from 'fs/promises';
+import glob from 'glob';
+import path from 'path';
+import { promisify } from 'util';
 
 interface RenderContext {
     readonly RootFile: string;
     readonly Root: Document;
-    readonly FileDoc: Record<string, Document>;
 }
-
-const emptyStringMathcer = /^\s+$/;
 
 function getFirstElement(root: Node): Element | undefined {
     let child = root.firstChild;
@@ -117,6 +117,7 @@ function ReplaceTemplates(templates: Element[], root: Node) {
                     }
                 }
 
+                // Replace attribute value
                 for (const [k, v] of Object.entries(getAllAttributes(child))) {
                     replaceVariables(firstElement, k, v);
                 }
@@ -148,7 +149,45 @@ function StartRender(ctx: RenderContext) {
 }
 
 export interface RenderPanoramaXMLOptions {
+    /**
+     * Default is two spaces
+     */
     indentation: string;
+    /**
+     * Path to template folders
+     */
+    templateRoots?: string[];
+    /**
+     * Prepare templates
+     */
+    templates?: Element[];
+}
+
+async function parseXMLFile(filePath: string): Promise<Document> {
+    const body = await readFile(filePath, { encoding: 'utf8' });
+    return new DOMParser().parseFromString(body, 'text/xml');
+}
+
+export async function PreloadTemplates(folders: string[]): Promise<Element[]> {
+    const list: Element[] = [];
+
+    for (const f of folders) {
+        const files = await promisify(glob)(path.join(f, '**/*.xml'));
+        for (const file of files) {
+            const doc = await parseXMLFile(file);
+            const templateElements = doc.getElementsByTagName('Template');
+            for (let i = templateElements.length - 1; i >= 0; i--) {
+                const element = templateElements.item(i)!;
+                const name = element.getAttribute('name');
+                if (list.some((v) => v.getAttribute('name') === name)) {
+                    throw Error(`${file}: Duplicate template name '${name}'`);
+                }
+                list.push(element);
+            }
+        }
+    }
+
+    return list;
 }
 
 export async function RenderPanoramaXML(
@@ -159,12 +198,10 @@ export async function RenderPanoramaXML(
         options = { indentation: '  ' };
     }
 
-    const body = await promises.readFile(xmlFilePath, { encoding: 'utf8' });
-    const doc = new DOMParser().parseFromString(body, 'text/xml');
+    const doc = await parseXMLFile(xmlFilePath);
     const ctx: RenderContext = {
         RootFile: xmlFilePath,
         Root: doc,
-        FileDoc: { [xmlFilePath]: doc },
     };
     StartRender(ctx);
 
