@@ -13,7 +13,9 @@
             <Panel id="CustomElementA" class="Demo">
                 <Panel id="Header" bind="Header" />
                 <Panel id="Body" bind="BestBody" />
-                <Panel id="Footer" bind="Footer" />
+                <Panel id="Footer" >
+                    <Panel bind="FooterLeft" />
+                </Panel>
             </Panel>
         </Template>
         <!-- CustomButton -->
@@ -33,9 +35,9 @@
                 <Label text="Body of CustomElementA" />
                 <CustomButton icon="cancel" text="#DOTA_Cancel" click="OnCancel()" />
             </BestBody>
-            <Footer>
+            <FooterLeft>
                 <Label text="Footer of CustomElementA" />
-            </Footer>
+            </FooterLeft>
         </CustomElementA>
 
         <CustomButton icon="plus" text="Button Text" click="OnClick()" />

@@ -21,7 +21,9 @@
                 </Panel>
             </Panel>
             <Panel id="Footer">
-                <Label text="Footer of CustomElementA"/>
+                <Panel>
+                    <Label text="Footer of CustomElementA"/>
+                </Panel>
             </Panel>
         </Panel>
         <Panel id="CustomButton" onactivate="OnClick()">

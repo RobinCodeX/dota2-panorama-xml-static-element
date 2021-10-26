@@ -8,6 +8,7 @@ import { promisify } from 'util';
 interface RenderContext {
     readonly RootFile: string;
     readonly Root: Document;
+    templates: Element[];
 }
 
 function getFirstElement(root: Node): Element | undefined {
@@ -28,7 +29,7 @@ function queryElementsByAttribute(attrName: string, root: Node): Element[] {
             if (!!(child as Element).getAttribute(attrName)) {
                 list.push(child as Element);
             } else if (child.hasChildNodes()) {
-                queryElementsByAttribute(attrName, child);
+                list.push(...queryElementsByAttribute(attrName, child));
             }
         }
         child = child.nextSibling;
@@ -138,14 +139,13 @@ function StartRender(ctx: RenderContext) {
 
     // Find templates
     const templateElements = ctx.Root.getElementsByTagName('Template');
-    const templates: Element[] = [];
     for (let i = templateElements.length - 1; i >= 0; i--) {
         const element = templateElements.item(i)!;
         element.parentNode?.removeChild(element);
-        templates.push(element);
+        ctx.templates.push(element);
     }
 
-    ReplaceTemplates(templates, ctx.Root);
+    ReplaceTemplates(ctx.templates, ctx.Root);
 }
 
 export interface RenderPanoramaXMLOptions {
@@ -197,11 +197,21 @@ export async function RenderPanoramaXML(
     if (!options) {
         options = { indentation: '  ' };
     }
+    if (!options.templates) {
+        options.templates = [];
+    }
+    if (options.templateRoots) {
+        options.templates = [
+            ...options.templates,
+            ...(await PreloadTemplates(options.templateRoots)),
+        ];
+    }
 
     const doc = await parseXMLFile(xmlFilePath);
     const ctx: RenderContext = {
         RootFile: xmlFilePath,
         Root: doc,
+        templates: options.templates,
     };
     StartRender(ctx);
 

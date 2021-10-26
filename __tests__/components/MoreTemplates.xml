@@ -1,0 +1,12 @@
+<Template name="Button01">
+    <Panel id="Button01" onactivate="[onClick]">
+        <Image src="file://{images}/custom_game/icons/[icon].png" />
+        <Label text="[text]" />
+    </Panel>
+</Template>
+<Template name="Button02">
+    <Panel id="Button02" onactivate="[onClick]">
+        <Image src="file://{images}/custom_game/icons/[icon].png" />
+        <Label text="[text]" />
+    </Panel>
+</Template>

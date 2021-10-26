@@ -12,11 +12,13 @@ describe('Test xml render', () => {
 
     test('preload components', async () => {
         const elements = await PreloadTemplates([path.join(__dirname, 'components')]);
-        expect(2).toBe(elements.length);
+        expect(4).toBe(elements.length);
         expect('Template').toBe(elements[0].tagName);
         expect('Template').toBe(elements[1].tagName);
         expect('DefaultButton').toBe(elements[0].getAttribute('name'));
         expect('HeroButton').toBe(elements[1].getAttribute('name'));
+        expect('Button02').toBe(elements[2].getAttribute('name'));
+        expect('Button01').toBe(elements[3].getAttribute('name'));
 
         await expect(
             PreloadTemplates([
