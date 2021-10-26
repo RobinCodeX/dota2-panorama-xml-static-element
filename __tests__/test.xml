@@ -25,8 +25,12 @@
                 <Label text="[text]" />
             </Panel>
         </Template>
+        <Template name="StyleButton">
+            <Panel id="StyleButton" style="background-color:#000;">
+            </Panel>
+        </Template>
 
-        <CustomElementA>
+        <CustomElementA class="DemoTest">
             <Header>
                 <Label text="Header of CustomElementA" />
                 <Button id="CloseButton" />
@@ -41,6 +45,8 @@
         </CustomElementA>
 
         <CustomButton icon="plus" text="Button Text" click="OnClick()" />
+        <CustomButton id="PlusButton" class="PlusButton" icon="plus" text="Button Text" click="OnClick()" />
 
+        <StyleButton style="margin-top:5px" />
     </Panel>
 </root>

@@ -8,7 +8,7 @@
     <snippets>
     </snippets>
     <Panel class="test_root">
-        <Panel id="CustomElementA" class="Demo">
+        <Panel id="CustomElementA" class="Demo DemoTest">
             <Panel id="Header">
                 <Label text="Header of CustomElementA"/>
                 <Button id="CloseButton"/>
@@ -29,6 +29,12 @@
         <Panel id="CustomButton" onactivate="OnClick()">
             <Image src="file://{images}/custom_game/icons/plus.png"/>
             <Label text="Button Text"/>
+        </Panel>
+        <Panel id="PlusButton" onactivate="OnClick()" class="PlusButton">
+            <Image src="file://{images}/custom_game/icons/plus.png"/>
+            <Label text="Button Text"/>
+        </Panel>
+        <Panel id="StyleButton" style="background-color:#000;margin-top:5px;">
         </Panel>
     </Panel>
 </root>

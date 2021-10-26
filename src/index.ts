@@ -123,6 +123,32 @@ function ReplaceTemplates(templates: Element[], root: Node) {
                     replaceVariables(firstElement, k, v);
                 }
 
+                // Inherit ID
+                const childID = child.getAttribute('id');
+                if (childID) {
+                    firstElement.setAttribute('id', childID);
+                }
+
+                // Merge class
+                const childClass = child.getAttribute('class');
+                if (childClass) {
+                    const classList: string[] = [
+                        ...(firstElement.getAttribute('class') || '').split(' '),
+                        ...childClass.split(' '),
+                    ].filter((v) => !!v.trim());
+                    firstElement.setAttribute('class', classList.join(' '));
+                }
+
+                // Merge style
+                const childStyle = child.getAttribute('style');
+                if (childStyle) {
+                    const classList: string[] = [
+                        ...(firstElement.getAttribute('style') || '').split(';'),
+                        ...childStyle.split(';'),
+                    ].filter((v) => !!v.trim());
+                    firstElement.setAttribute('style', classList.join(';') + ';');
+                }
+
                 // Replace element
                 child.parentNode?.replaceChild(firstElement, child);
                 child = firstElement;
