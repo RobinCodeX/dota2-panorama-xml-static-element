@@ -1,0 +1,25 @@
+{
+    "name": "dota2-panorama-xml-static-element",
+    "version": "0.0.1",
+    "description": "",
+    "main": "dist/index.js",
+    "engines": {
+        "node": ">=14.0.0"
+    },
+    "engineStrict": true,
+    "author": "RobinCode",
+    "homepage": "https://github.com/RobinCodeX/dota2-panorama-xml-static-element",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/RobinCodeX/dota2-panorama-xml-static-element.git"
+    },
+    "keywords": [
+        "dota2"
+    ],
+    "license": "MIT",
+    "dependencies": {
+        "glob": "^7.2.0",
+        "xml-formatter": "^2.5.1",
+        "xmldom": "^0.6.0"
+    }
+}

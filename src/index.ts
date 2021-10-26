@@ -220,5 +220,3 @@ export async function RenderPanoramaXML(
         lineSeparator: '\n',
     });
 }
-
-export default RenderPanoramaXML;
