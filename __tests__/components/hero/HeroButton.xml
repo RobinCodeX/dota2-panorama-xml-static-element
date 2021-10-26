@@ -1,6 +1,6 @@
 <Template name="HeroButton">
-    <Panel id="HeroButton" onactivate="@onClick">
-        <DOTAHeroImage heroname="@heroname" heroimagestyle="portrait" />
-        <Label text="@heroname" />
+    <Panel id="HeroButton" onactivate="[onClick]">
+        <DOTAHeroImage heroname="[heroname]" heroimagestyle="portrait" />
+        <Label text="[heroname]" />
     </Panel>
 </Template>

@@ -66,7 +66,7 @@ function replaceVariables(root: Element, key: string, value: string) {
     if (root.nodeType === root.ELEMENT_NODE) {
         for (let i = 0; i < root.attributes.length; i++) {
             const attr = root.attributes.item(i)!;
-            attr.value = attr.value.replace(`@${key}`, value);
+            attr.value = attr.value.replace(`[${key}]`, value);
         }
     }
 

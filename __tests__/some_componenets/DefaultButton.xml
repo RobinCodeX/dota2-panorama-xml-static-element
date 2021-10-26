@@ -1,6 +1,6 @@
 <Template name="DefaultButton">
-    <Panel id="DefaultButton" onactivate="@onClick">
-        <Image src="file://{images}/custom_game/icons/@icon.png" />
-        <Label text="@text" />
+    <Panel id="DefaultButton" onactivate="[onClick]">
+        <Image src="file://{images}/custom_game/icons/[icon].png" />
+        <Label text="[text]" />
     </Panel>
 </Template>

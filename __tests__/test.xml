@@ -18,9 +18,9 @@
         </Template>
         <!-- CustomButton -->
         <Template name="CustomButton">
-            <Panel id="CustomButton" onactivate="@click">
-                <Image src="file://{images}/custom_game/icons/@icon.png" />
-                <Label text="@text" />
+            <Panel id="CustomButton" onactivate="[click]">
+                <Image src="file://{images}/custom_game/icons/[icon].png" />
+                <Label text="[text]" />
             </Panel>
         </Template>
 
