@@ -1,0 +1,13 @@
+<snippets>
+    <!-- Ability ICON -->
+    <snippet name="Ability">
+        <Panel class="Ability">
+            <DOTAAbilityImage id="AbilityImage" />
+        </Panel>
+    </snippet>
+    <snippet name="AbilityLarge">
+        <Panel class="AbilityLarge">
+            <DOTAAbilityImage id="AbilityImage" />
+        </Panel>
+    </snippet>
+</snippets>

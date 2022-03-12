@@ -1,3 +1,4 @@
+<!-- Button01 -->
 <Template name="Button01">
     <Panel id="Button01" onactivate="[onClick]">
         <Image src="file://{images}/custom_game/icons/[icon].png" />

@@ -1,0 +1,12 @@
+<root>
+    <styles>
+        <include src="file://{resources}/styles/test.css"/>
+    </styles>
+    <scripts>
+        <include src="file://{resources}/scripts/test.js"/>
+    </scripts>
+    <snippets>
+    </snippets>
+    <Panel class="test_root">
+    </Panel>
+</root>

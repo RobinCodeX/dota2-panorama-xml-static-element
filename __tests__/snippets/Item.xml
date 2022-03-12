@@ -1,0 +1,7 @@
+<snippets>
+    <snippet name="Item">
+        <Panel class="Item">
+            <DOTAItemImage id="ItemImage" />
+        </Panel>
+    </snippet>
+</snippets>

@@ -1,0 +1,192 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test xml render generic snippets - no snippets 1`] = `
+"<root>
+  <styles>
+    <include src=\\"file://{resources}/styles/test.css\\"/>
+  </styles>
+  <scripts>
+    <include src=\\"file://{resources}/scripts/test.js\\"/>
+  </scripts>
+  <snippets>
+    <snippet name=\\"Ability\\">
+      <Panel class=\\"Ability\\">
+        <DOTAAbilityImage id=\\"AbilityImage\\"/>
+      </Panel>
+    </snippet>
+    <snippet name=\\"AbilityLarge\\">
+      <Panel class=\\"AbilityLarge\\">
+        <DOTAAbilityImage id=\\"AbilityImage\\"/>
+      </Panel>
+    </snippet>
+    <snippet name=\\"Item\\">
+      <Panel class=\\"Item\\">
+        <DOTAItemImage id=\\"ItemImage\\"/>
+      </Panel>
+    </snippet>
+  </snippets>
+  <Panel class=\\"test_root\\">
+    <Panel/>
+    <Panel/>
+  </Panel>
+</root>"
+`;
+
+exports[`Test xml render generic snippets 1`] = `
+"<root>
+  <styles>
+    <include src=\\"file://{resources}/styles/test.css\\"/>
+  </styles>
+  <scripts>
+    <include src=\\"file://{resources}/scripts/test.js\\"/>
+  </scripts>
+  <snippets>
+    <snippet name=\\"Ability\\">
+      <Panel class=\\"Ability\\">
+        <DOTAAbilityImage id=\\"AbilityImage\\"/>
+      </Panel>
+    </snippet>
+    <snippet name=\\"AbilityLarge\\">
+      <Panel class=\\"AbilityLarge\\">
+        <DOTAAbilityImage id=\\"AbilityImage\\"/>
+      </Panel>
+    </snippet>
+    <snippet name=\\"Item\\">
+      <Panel class=\\"Item\\">
+        <DOTAItemImage id=\\"ItemImage\\"/>
+      </Panel>
+    </snippet>
+  </snippets>
+  <Panel class=\\"test_root\\">
+  </Panel>
+</root>"
+`;
+
+exports[`Test xml render test.xml 1`] = `
+"<root>
+    <styles>
+        <include src=\\"file://{resources}/styles/test.css\\"/>
+    </styles>
+    <scripts>
+        <include src=\\"file://{resources}/scripts/test.js\\"/>
+    </scripts>
+    <snippets>
+    </snippets>
+    <Panel class=\\"test_root\\">
+        <Panel id=\\"CustomElementA\\" class=\\"Demo DemoTest\\">
+            <Panel id=\\"Header\\">
+                <Label text=\\"Header of CustomElementA\\"/>
+                <Button id=\\"CloseButton\\"/>
+            </Panel>
+            <Panel id=\\"Body\\">
+                <Label text=\\"Body of CustomElementA\\"/>
+                <Panel id=\\"CustomButton\\" onactivate=\\"OnCancel()\\">
+                    <Image src=\\"file://{images}/custom_game/icons/cancel.png\\"/>
+                    <Label text=\\"#DOTA_Cancel\\"/>
+                </Panel>
+            </Panel>
+            <Panel id=\\"Footer\\">
+                <Panel>
+                    <Label text=\\"Footer of CustomElementA\\"/>
+                </Panel>
+            </Panel>
+        </Panel>
+        <Panel id=\\"CustomButton\\" onactivate=\\"OnClick()\\">
+            <Image src=\\"file://{images}/custom_game/icons/plus.png\\"/>
+            <Label text=\\"Button Text\\"/>
+        </Panel>
+        <Panel id=\\"PlusButton\\" onactivate=\\"OnClick()\\" class=\\"PlusButton\\">
+            <Image src=\\"file://{images}/custom_game/icons/plus.png\\"/>
+            <Label text=\\"Button Text\\"/>
+        </Panel>
+        <Panel id=\\"StyleButton\\" style=\\"background-color:#000;margin-top:5px;\\">
+        </Panel>
+    </Panel>
+</root>"
+`;
+
+exports[`Test xml render test.xml no options 1`] = `
+"<root>
+  <styles>
+    <include src=\\"file://{resources}/styles/test.css\\"/>
+  </styles>
+  <scripts>
+    <include src=\\"file://{resources}/scripts/test.js\\"/>
+  </scripts>
+  <snippets>
+  </snippets>
+  <Panel class=\\"test_root\\">
+    <Panel id=\\"CustomElementA\\" class=\\"Demo DemoTest\\">
+      <Panel id=\\"Header\\">
+        <Label text=\\"Header of CustomElementA\\"/>
+        <Button id=\\"CloseButton\\"/>
+      </Panel>
+      <Panel id=\\"Body\\">
+        <Label text=\\"Body of CustomElementA\\"/>
+        <Panel id=\\"CustomButton\\" onactivate=\\"OnCancel()\\">
+          <Image src=\\"file://{images}/custom_game/icons/cancel.png\\"/>
+          <Label text=\\"#DOTA_Cancel\\"/>
+        </Panel>
+      </Panel>
+      <Panel id=\\"Footer\\">
+        <Panel>
+          <Label text=\\"Footer of CustomElementA\\"/>
+        </Panel>
+      </Panel>
+    </Panel>
+    <Panel id=\\"CustomButton\\" onactivate=\\"OnClick()\\">
+      <Image src=\\"file://{images}/custom_game/icons/plus.png\\"/>
+      <Label text=\\"Button Text\\"/>
+    </Panel>
+    <Panel id=\\"PlusButton\\" onactivate=\\"OnClick()\\" class=\\"PlusButton\\">
+      <Image src=\\"file://{images}/custom_game/icons/plus.png\\"/>
+      <Label text=\\"Button Text\\"/>
+    </Panel>
+    <Panel id=\\"StyleButton\\" style=\\"background-color:#000;margin-top:5px;\\">
+    </Panel>
+  </Panel>
+</root>"
+`;
+
+exports[`Test xml render test.xml templateRoots option 1`] = `
+"<root>
+  <styles>
+    <include src=\\"file://{resources}/styles/test.css\\"/>
+  </styles>
+  <scripts>
+    <include src=\\"file://{resources}/scripts/test.js\\"/>
+  </scripts>
+  <snippets>
+  </snippets>
+  <Panel class=\\"test_root\\">
+    <Panel id=\\"CustomElementA\\" class=\\"Demo DemoTest\\">
+      <Panel id=\\"Header\\">
+        <Label text=\\"Header of CustomElementA\\"/>
+        <Button id=\\"CloseButton\\"/>
+      </Panel>
+      <Panel id=\\"Body\\">
+        <Label text=\\"Body of CustomElementA\\"/>
+        <Panel id=\\"CustomButton\\" onactivate=\\"OnCancel()\\">
+          <Image src=\\"file://{images}/custom_game/icons/cancel.png\\"/>
+          <Label text=\\"#DOTA_Cancel\\"/>
+        </Panel>
+      </Panel>
+      <Panel id=\\"Footer\\">
+        <Panel>
+          <Label text=\\"Footer of CustomElementA\\"/>
+        </Panel>
+      </Panel>
+    </Panel>
+    <Panel id=\\"CustomButton\\" onactivate=\\"OnClick()\\">
+      <Image src=\\"file://{images}/custom_game/icons/plus.png\\"/>
+      <Label text=\\"Button Text\\"/>
+    </Panel>
+    <Panel id=\\"PlusButton\\" onactivate=\\"OnClick()\\" class=\\"PlusButton\\">
+      <Image src=\\"file://{images}/custom_game/icons/plus.png\\"/>
+      <Label text=\\"Button Text\\"/>
+    </Panel>
+    <Panel id=\\"StyleButton\\" style=\\"background-color:#000;margin-top:5px;\\">
+    </Panel>
+  </Panel>
+</root>"
+`;

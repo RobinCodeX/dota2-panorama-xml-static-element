@@ -1,14 +1,16 @@
-import { DOMParser, XMLSerializer } from 'xmldom';
+import { DOMParser, XMLSerializer } from '@xmldom/xmldom';
 import formatter from 'xml-formatter';
 import { readFile } from 'fs/promises';
 import glob from 'glob';
 import path from 'path';
 import { promisify } from 'util';
+import { MakeGenericSnippets } from './generic_snippets';
 
 interface RenderContext {
     readonly RootFile: string;
     readonly Root: Document;
     templates: Element[];
+    readonly snippetsFiles: string[];
 }
 
 function getFirstElement(root: Node): Element | undefined {
@@ -37,22 +39,22 @@ function queryElementsByAttribute(attrName: string, root: Node): Element[] {
     return list;
 }
 
-function queryElementsByID(id: string, root: Node): Element | undefined {
-    let child = root.firstChild;
-    while (child) {
-        if (child.nodeType === child.ELEMENT_NODE) {
-            if ((child as Element).getAttribute('id') === id) {
-                return child as Element;
-            } else if (child.hasChildNodes()) {
-                const nextChild = queryElementsByID(id, child);
-                if (nextChild) {
-                    return nextChild;
-                }
-            }
-        }
-        child = child.nextSibling;
-    }
-}
+// function queryElementsByID(id: string, root: Node): Element | undefined {
+//     let child = root.firstChild;
+//     while (child) {
+//         if (child.nodeType === child.ELEMENT_NODE) {
+//             if ((child as Element).getAttribute('id') === id) {
+//                 return child as Element;
+//             } else if (child.hasChildNodes()) {
+//                 const nextChild = queryElementsByID(id, child);
+//                 if (nextChild) {
+//                     return nextChild;
+//                 }
+//             }
+//         }
+//         child = child.nextSibling;
+//     }
+// }
 
 function getAllAttributes(root: Element): Record<string, string> {
     const result: Record<string, string> = {};
@@ -99,10 +101,7 @@ function ReplaceTemplates(templates: Element[], root: Node) {
         if (child.nodeType === child.ELEMENT_NODE) {
             const template = templates.find((v) => v.getAttribute('name') === child.nodeName);
             if (template) {
-                const firstElement = getFirstElement(template.cloneNode(true));
-                if (!firstElement) {
-                    throw Error(`not first child in template ${child.nodeName}`);
-                }
+                const firstElement = getFirstElement(template.cloneNode(true))!;
 
                 // Copy children
                 const bindElements = queryElementsByAttribute('bind', firstElement);
@@ -160,7 +159,22 @@ function ReplaceTemplates(templates: Element[], root: Node) {
     }
 }
 
-function StartRender(ctx: RenderContext) {
+async function StartRender(ctx: RenderContext) {
+    const snippets = await MakeGenericSnippets(ctx.snippetsFiles);
+    if (snippets.length > 0) {
+        let rootSnippets = ctx.Root.getElementsByTagName('snippets').item(0);
+        if (!rootSnippets) {
+            const element = ctx.Root.createElement('snippets');
+            const firstPanel = ctx.Root.getElementsByTagName('Panel').item(0);
+            if (firstPanel) {
+                const rootNode = ctx.Root.childNodes.item(0);
+                rootNode.insertBefore(element, firstPanel);
+                rootSnippets = ctx.Root.getElementsByTagName('snippets').item(0);
+            }
+        }
+        snippets.forEach((v) => rootSnippets!.appendChild(v));
+    }
+
     ClearComments(ctx.Root);
 
     // Find templates
@@ -178,7 +192,7 @@ export interface RenderPanoramaXMLOptions {
     /**
      * Default is two spaces
      */
-    indentation: string;
+    indentation?: string;
     /**
      * Path to template folders
      */
@@ -187,6 +201,10 @@ export interface RenderPanoramaXMLOptions {
      * Prepare templates
      */
     templates?: Element[];
+    /**
+     * File path of generic snippets
+     */
+    snippetsFiles?: string[];
 }
 
 async function parseXMLFile(filePath: string): Promise<Document> {
@@ -232,14 +250,18 @@ export async function RenderPanoramaXML(
             ...(await PreloadTemplates(options.templateRoots)),
         ];
     }
+    if (!options.indentation) {
+        options.indentation = '  ';
+    }
 
     const doc = await parseXMLFile(xmlFilePath);
     const ctx: RenderContext = {
         RootFile: xmlFilePath,
         Root: doc,
         templates: options.templates,
+        snippetsFiles: options.snippetsFiles || [],
     };
-    StartRender(ctx);
+    await StartRender(ctx);
 
     return formatter(new XMLSerializer().serializeToString(ctx.Root), {
         indentation: options.indentation || '  ',
