@@ -1,10 +1,10 @@
 {
     "name": "dota2-panorama-xml-static-element",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "description": "",
     "main": "index.js",
     "engines": {
-        "node": ">=14.0.0"
+        "node": ">=16.0.0"
     },
     "engineStrict": true,
     "author": "RobinCode",
@@ -18,8 +18,8 @@
     ],
     "license": "MIT",
     "dependencies": {
+        "@xmldom/xmldom": "^0.8.1",
         "glob": "^7.2.0",
-        "xml-formatter": "^2.5.1",
-        "xmldom": "^0.6.0"
+        "xml-formatter": "^2.6.1"
     }
 }
